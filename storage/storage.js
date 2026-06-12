@@ -33,10 +33,10 @@ export const addLink = async (key, newItem) => {
   try {
     const currentData = await getData(key);
     let list = Array.isArray(currentData) ? currentData : [];
-    list.push(newItem = {
-        id: newItem.id,
-        title: newItem.title,
-        content: newItem.content
+    list.push({
+      id: newItem.id,
+      title: newItem.title,
+      content: newItem.content
     });
     await storeData(key, list);
   } catch (error) {
