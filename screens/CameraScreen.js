@@ -34,17 +34,12 @@ export default function CameraScreen({ navigation, onAddLink }) {
   setScanned(true);
   try {
     const dadosDoQrCode = JSON.parse(data);
-    
     const newLink = {
       id: dadosDoQrCode.id ? String(dadosDoQrCode.id) : String(Date.now()),
       title: dadosDoQrCode.title || "Item Escaneado",
       content: dadosDoQrCode.content || "Sem conteúdo"
     };
-
-    // CORRIGIDO: Usando a prop que veio do App.js em vez do import direto do storage
-    if (onAddLink) {
-      await onAddLink(newLink); 
-    }
+    if (onAddLink) { await onAddLink(newLink); }
 
     alert(`QR Code escaneado com sucesso!`);
     navigation.navigate('Home');

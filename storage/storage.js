@@ -1,6 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-// Salvar dados
 export const storeData = async (key, value) => {
   try {
     const valueToStore = typeof value === 'object' ? JSON.stringify(value) : value;
@@ -10,7 +9,6 @@ export const storeData = async (key, value) => {
   }
 };
 
-// Ler dados
 export const getData = async (key) => {
   try {
     const value = await AsyncStorage.getItem(key);
@@ -28,7 +26,6 @@ export const getData = async (key) => {
   }
 };
 
-// add link
 export const addLink = async (key, newItem) => {
   try {
     const currentData = await getData(key);

@@ -12,25 +12,22 @@ const Stack = createStackNavigator();
 
 export default function App() {
   const [links, setLinks] = useState([]);
-
-  // CORRIGIDO: Carrega apenas o que realmente está salvo
   useEffect(() => {
     const loadStoredData = async () => {
       const savedLinks = await getData('@app_links');
       if (savedLinks && Array.isArray(savedLinks)) {
         setLinks(savedLinks);
       } else {
-        setLinks([]); // Se estiver vazio, começa com uma lista limpa
+        setLinks([]);
       }
     };
     loadStoredData();
   }, []);
 
-  // Função correta que atualiza o estado do App.js E o AsyncStorage simultaneamente
   const handleAddLink = async (newLink) => {
     const updatedLinks = [...links, newLink];
-    setLinks(updatedLinks); // Atualiza a HomeScreen imediatamente
-    await storeData('@app_links', updatedLinks); // Salva de forma persistente
+    setLinks(updatedLinks);
+    await storeData('@app_links', updatedLinks);
   };
 
   return (
@@ -43,8 +40,7 @@ export default function App() {
         <Stack.Screen
           name="Home"
           options={({ navigation }) => ({
-            title: 'Menu',
-            headerTitleAlign: 'center',
+            title: 'Avard',
             headerRight: () => (
               <Button
                 onPress={() => navigation.navigate('About')}
@@ -52,7 +48,8 @@ export default function App() {
                 color="#eba0ac"
               />
             ),
-          })}>
+          })}
+        >
           {(props) => <HomeScreen {...props} links={links} />}
         </Stack.Screen>
 
@@ -63,8 +60,8 @@ export default function App() {
 
         <Stack.Screen
           name="Camera"
-          options={{ title: 'Câmera', headerTitleAlign: 'center' }}>
-          {/* Passando a função handleAddLink via prop onAddLink */}
+          options={{ title: 'Câmera', headerTitleAlign: 'center' }}
+        >
           {(props) => <CameraScreen {...props} onAddLink={handleAddLink} />}
         </Stack.Screen>
 

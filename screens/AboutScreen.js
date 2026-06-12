@@ -4,18 +4,18 @@ import * as Speech from 'expo-speech';
 import { useFocusEffect } from '@react-navigation/native';
 
 export default function AboutScreen() {
-  // Audio.
   const falarTexto = () => {
     const frase = "Sobre o App. Para retornar a tela anterior, utilize o botão na parte superior esquerda da tela ou use o comando voltar do seu dispositivo. Conteúdo. Texto explicando brevemente o que é o aplicativo Avard. Avard é um aplicativo desenvolvido com a proposta de facilitar o acesso à pessoas com deficiência visual a informações não inclusivas, como rótulos de produtos ou descrições de ambiente. O aplicativo utiliza um scaner de QR codes para inserir conteúdos em uma lista que fica armazenada no dispositivo do usuário. Ele oferece funcionalidades como conversão de texto em fala e um localizador de palavras para facilitar encontrar uma informação específica.";
     Speech.speak(frase, { language: 'pt-BR' }); 
   };
+  
   useFocusEffect(
     useCallback(() => {
       falarTexto();
       return () => Speech.stop();
     }, [])
   );
-  // Visual.
+
   return (
     <View style={styles.container}>
       <Text style={styles.text}>

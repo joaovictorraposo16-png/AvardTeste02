@@ -24,12 +24,8 @@ export default function ListScreen({ route }) {
     }, [])
   );
 
-  // Visual corrigido
   return (
-    // Esta View principal envelopa tudo e garante que a tela ocupe 100% do espaço (flex: 1)
     <View style={styles.mainContainer}>
-      
-      {/* O ScrollView cuida apenas da rolagem do texto e do input */}
       <ScrollView style={styles.scrollContainer}>
         <TextInput
           style={styles.input}
@@ -47,48 +43,24 @@ export default function ListScreen({ route }) {
           )}
         </View>
       </ScrollView>
-
-      {/* O container do botão fica FORA do ScrollView, fixando-o na parte inferior */}
       <View style={styles.bottomContainer}>
         <TouchableOpacity style={styles.audioButton} onPress={falarTexto}>
           <Text style={styles.audioButtonText}>Ouvir Texto</Text>
         </TouchableOpacity>
       </View>
-
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  // Container principal da tela
-  mainContainer: { 
-    flex: 1, 
-    backgroundColor: '#f5e0dc' 
-  },
-  // Mudamos o padding do container para o ScrollView para não espremer o botão
-  scrollContainer: { 
-    flex: 1, 
-    padding: 20 
-  },
+  mainContainer: { flex: 1, backgroundColor: '#f5e0dc' },
+  scrollContainer: { flex: 1, padding: 20 },
   title: { fontSize: 22, fontWeight: 'bold', marginBottom: 15 },
   input: { backgroundColor: '#f2cdcd', padding: 12, borderRadius: 8, marginBottom: 20, fontSize: 16, borderColor: '#eba0ac', borderWidth: 1 },
   contentContainer: { minHeight: 150, padding: 10, backgroundColor: '#f2cdcd', borderRadius: 8, marginBottom: 20, borderColor: '#eba0ac', borderWidth: 1 },
   content: { fontSize: 16, lineHeight: 24, color: '#181825' },
   noMatchText: { color: 'red', fontStyle: 'italic' },
-  
-  // Container que joga o botão para o rodapé e adiciona um espaçamento confortável
-  bottomContainer: { 
-    padding: 20,
-    backgroundColor: '#f5e0dc', // Mantém a cor de fundo igual à da tela
-  },
-  audioButton: { 
-    backgroundColor: '#eba0ac', 
-    padding: 15, 
-    borderRadius: 8, 
-    alignItems: 'center', 
-    justifyContent: 'center', 
-    borderWidth: 1, 
-    borderColor: '#d17c8b' 
-  },
+  bottomContainer: { padding: 20, backgroundColor: '#f5e0dc',},
+  audioButton: { backgroundColor: '#eba0ac', padding: 15, borderRadius: 8, alignItems: 'center', justifyContent: 'center', borderWidth: 1, borderColor: '#d17c8b' },
   audioButtonText: { color: '#181825', fontSize: 16, fontWeight: 'bold' },
 });
